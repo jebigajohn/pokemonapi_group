@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 import type { IPokemonDescription, IPokemonResult } from "../interfaces/IPokemon"
 import type { ITypeResult } from "../interfaces/IType"
+import { getPokemon, listByGeneration, listByType, listRandom12 } from "../api/Pokemon"
+import type { IPokemonLite } from "../interfaces/IPokemonLite"
 
 export type PokedexState = {
   // query
@@ -8,27 +10,27 @@ export type PokedexState = {
   setQuery: React.Dispatch<React.SetStateAction<string>>
 
   // Random Pokemon
-  randomPokemons: IPokemonDescription[] | null
-  setRandomPokemons: React.Dispatch<React.SetStateAction<IPokemonDescription[] | null>>
+  randomPokemons: IPokemonLite[] | null
+  setRandomPokemons: React.Dispatch<React.SetStateAction<IPokemonLite[] | null>>
 
   // Generations
   generation: number | null
   setGeneration: React.Dispatch<React.SetStateAction<number | null>>
-  generationResult: IPokemonResult[]
+  generationResult: IPokemonLite[]
 
   // Types
   type: string | null
   setType: React.Dispatch<React.SetStateAction<string | null>>
-  typeResult: ITypeResult[]
+  typeResult: IPokemonLite[]
 
   // Ergebnisliste
-  pokemon: IPokemonResult[]
+  pokemon: IPokemonLite[]
   loading: boolean
   error: string | null
 
   // Detail
-  selectedPokemon: IPokemonDescription | null
-  setSelectedPokemon: React.Dispatch<React.SetStateAction<IPokemonDescription | null>>
+  selectedPokemon: IPokemonLite | null
+  setSelectedPokemon: React.Dispatch<React.SetStateAction<IPokemonLite | null>>
   detailLoading: boolean
   detailError: string | null
 }
@@ -46,31 +48,130 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
   const [query, setQuery] = useState("")
 
   // Random Pokemons
-  const [randomPokemons, setRandomPokemons] = useState<IPokemonDescription[] | null>(null)
+  const [randomPokemons, setRandomPokemons] = useState<IPokemonLite[] | null>(null)
 
   // Generations
   const [generation, setGeneration] = useState<number | null>(null)
-  const [generationResult, setGenerationResult] = useState<IPokemonResult[]>([])
+  const [generationResult, setGenerationResult] = useState<IPokemonLite[]>([])
 
   // Types
   const [type, setType] = useState<string | null>(null)
-  const [typeResult, setTypeResult] = useState<ITypeResult[]>([])
+  const [typeResult, setTypeResult] = useState<IPokemonLite[]>([])
 
   // Ergebnisliste
-  const [pokemon, setPokemon] = useState<IPokemonResult[]>([])
+  const [pokemon, setPokemon] = useState<IPokemonLite | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   // Detail
-  const [selectedPokemon, setSelectedPokemon] = useState<IPokemonDescription | null>(null)
+  const [selectedPokemon, setSelectedPokemon] = useState<IPokemonLite | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
   const [detailError, setDetailError] = useState<string | null>(null)
 
+  //  mapLite
+  // listRandom12
+  // listByGeneration
+  // listByType
+  // listAllNames
+  // getPokemon
+
   //# Initial: 12 Random Pokemon
-  useEffect(() => {}, [])
+  // listRandom12
+  useEffect(() => {
+    const getRandomPokemon = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const resp = await listRandom12()
+        setRandomPokemons(resp)
+      } catch (error: any) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getRandomPokemon()
+  }, [])
+
+  //# Generation
+  // listByGeneration
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    if (generation) {
+      const getGeneration = async () => {
+        setError(null)
+        try {
+          const resp = await listByGeneration(generation)
+          setGenerationResult(resp)
+        } catch (error: any) {
+          setError(error.message)
+        } finally {
+          setLoading(false)
+        }
+      }
+      getGeneration()
+    }
+  }, [generation])
+
+  //# Type
+  // listByType
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    if (type) {
+      const getType = async () => {
+        setError(null)
+        try {
+          const resp = await listByType(type)
+          setTypeResult(resp)
+        } catch (error: any) {
+          setError(error.message)
+        } finally {
+          setLoading(false)
+        }
+      }
+      getType()
+    }
+  }, [type])
+
+  //# Pokemon (einzeln)
+  // getPokemon
+
+  const getIndividualPokemon = async (nameOrId: string | number) => {
+    setDetailLoading(true)
+    setDetailError(null)
+    try {
+      const resp = await getPokemon(nameOrId)
+      setSelectedPokemon(resp)
+    } catch (error: any) {
+      setDetailError(error.message)
+    } finally {
+      setDetailLoading(false)
+    }
+  }
 
   //# Suchfeld
-  useEffect(() => {}, [])
+  // getPokemon
+  // listAllNames
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+    if (query) {
+      const getSearchedPokemon = async () => {
+        setError(null)
+        try {
+          const resp = await getPokemon(query)
+          setPokemon(resp)
+        } catch (error: any) {
+          setError(error.message)
+        } finally {
+          setLoading(false)
+        }
+      }
+      getSearchedPokemon()
+    }
+  }, [query])
 
   const value: PokedexState = {
     query,
