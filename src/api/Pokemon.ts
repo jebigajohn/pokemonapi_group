@@ -67,7 +67,10 @@ export async function listByType(typeName: string): Promise<IPokemonLite[]> {
 }
 
 export async function listAllNames(): Promise<string[]> {
-  const { data } = await api.get('/pokemon', { params: { limit: 100000 } })
+  const { data: first } = await api.get('/pokemon', { params: { limit: 1 } })
+  const count: number = first.count
+
+  const { data } = await api.get('/pokemon', { params: { limit: count } })
   return (data.results ?? []).map((r: any) => r.name)
 }
 
