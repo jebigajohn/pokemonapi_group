@@ -1,11 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-<<<<<<< HEAD
-
-=======
-import type { IPokemonDescription } from "../interfaces/IPokemon"
->>>>>>> development
 import { getPokemon, listByGeneration, listByType, listRandom12 } from "../api/Pokemon"
 import type { IPokemonLite } from "../interfaces/IPokemonLite"
+import type { IPokemonDescription } from "../interfaces/IPokemon"
 
 export type PokedexState = {
   // query

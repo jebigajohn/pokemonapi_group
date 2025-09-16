@@ -14,8 +14,12 @@ export default function GenPage() {
 
   if (!generationResult.length) return <div>Noch keine Daten für Gen {genId}</div>
 
-  return {
-     <div>
-      <LoadingMorePokemon />
+  return (
+    <div>
+      {/* {" "}
+      {generationResult.map((p) => (
+        <PokemonCard key={p.name} pokemon={p} />
+      ))}
     </div>
-  }
+  )
+}
