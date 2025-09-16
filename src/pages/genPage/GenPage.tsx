@@ -19,7 +19,8 @@ export default function GenPage() {
       {/* {" "}
       {generationResult.map((p) => (
         <PokemonCard key={p.name} pokemon={p} />
-      ))}
+      ))} */}
+      <LoadingMorePokemon />
     </div>
   )
 }
