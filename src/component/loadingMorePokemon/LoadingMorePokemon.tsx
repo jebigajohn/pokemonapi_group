@@ -5,14 +5,14 @@ import PokemonCard from "../pokemonCard/PokemonCard"
 export default function LoadingMorePokemon() {
   const { generationResult } = usePokedex()
 
-  const limit: number = 12
+  const numberOfPokemon: number = 12
 
-  const [showMorePokemon, setShowMorePokemon] = useState<number>(limit)
+  const [showMorePokemon, setShowMorePokemon] = useState<number>(numberOfPokemon)
 
   const pokemonShownOnPage = generationResult.slice(0, showMorePokemon)
 
   const loadMore = () => {
-    setShowMorePokemon((pokemons) => pokemons + limit)
+    setShowMorePokemon((pokemons) => pokemons + numberOfPokemon)
   }
 
   return (
