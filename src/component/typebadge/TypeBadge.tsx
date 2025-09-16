@@ -30,7 +30,7 @@ export default function TypeBadge({ type, onClick }: TypeBadgeProps) {
     <>
       <div
         onClick={() => onClick?.(type)}
-        className="px-2 py-1 w-fit rounded-full text-xs font-medium capitalize"
+        className="px-1 py-1 w-fit rounded-full text-xs font-medium capitalize"
         style={{ background: color + "90" }}>
         {type}
       </div>

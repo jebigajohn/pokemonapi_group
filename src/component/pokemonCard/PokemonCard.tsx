@@ -19,8 +19,8 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
     setOpen(true)
   }
 
-  const isDescription = (p: IPokemonDescription | IPokemonLite): p is IPokemonDescription => {
-    return (p as IPokemonDescription).sprites !== undefined
+  const isDescription = (pokemon: IPokemonDescription | IPokemonLite): pokemon is IPokemonDescription => {
+    return (pokemon as IPokemonDescription).sprites !== undefined
   }
 
   const image = isDescription(pokemon)
@@ -39,7 +39,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         <div>
           <div className="text-xs text-black/40">#{String(pokemon.id).padStart(4, "0")}</div>
           <div className="text-lg font-semibold capitalize">{pokemon.name}</div>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="mt-2 flex flex-col sm:flex-row gap-1">
             {types.map((type) => (
               <TypeBadge key={type} type={type} />
             ))}

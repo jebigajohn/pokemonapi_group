@@ -60,7 +60,7 @@ export default function Modal({ open, onClose }: ModalProps) {
                   selectedPokemon.sprites.other?.["official-artwork"].front_default
                 }
                 alt={selectedPokemon.name}
-                className="w-full h-auto object-contain bg-black/4 p-5 rounded-2xl"
+                className="w-full aspect-square object-contain bg-black/4 p-5 rounded-2xl"
               />
             ) : (
               <div>No Data</div>

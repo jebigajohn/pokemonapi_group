@@ -15,10 +15,9 @@ const HoloCard = forwardRef<HTMLElement, HoloCardProps>(function HoloCard(
   _ref
 ) {
   const wrapRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLElement>(null) // <- .holo Element
+  const containerRef = useRef<HTMLElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
 
-  // Initialwerte setzen, damit der Effekt sofort sichtbar ist
   useEffect(() => {
     if (!containerRef.current) return
     gsap.set(containerRef.current, {
@@ -29,7 +28,6 @@ const HoloCard = forwardRef<HTMLElement, HoloCardProps>(function HoloCard(
   }, [])
 
   const onMove = (e: React.MouseEvent) => {
-    // Touchpointer ignorieren (mobil: nur Tap)
     // @ts-ignore
     if (e?.nativeEvent?.pointerType === "touch") return
 
@@ -40,7 +38,6 @@ const HoloCard = forwardRef<HTMLElement, HoloCardProps>(function HoloCard(
     const mx = x / rect.width
     const my = y / rect.height
 
-    // Sanfterer Tilt
     const rotateY = (mx - 0.5) * 14
     const rotateX = (0.5 - my) * 10
 
@@ -80,17 +77,14 @@ const HoloCard = forwardRef<HTMLElement, HoloCardProps>(function HoloCard(
         onClick={onClick}
         href={href}
         className={[
-          "holo holo--soft", // <- wähle soft/mid/loud
+          "holo holo--soft",
           "relative rounded-2xl border border-black/5 shadow-xl",
           "transition-[box-shadow,transform] duration-300",
           "bg-[#fefefc] text-left w-full max-w-xs",
           className,
         ].join(" ")}
         {...rest}>
-        {/* Shine-Layer */}
         <div className="holo-shine rounded-2xl" />
-
-        {/* Inhalt bewusst unter die Overlays legen */}
         <div ref={cardRef} className="relative z-[1] p-5">
           {children}
         </div>
