@@ -59,7 +59,7 @@ export default function Navbar() {
         </div>
 
         <button
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((open) => !open)}
           className="sm:hidden relative h-10 w-10 grid place-items-center rounded-md">
           <span
             className={[
@@ -99,7 +99,7 @@ export default function Navbar() {
           open ? "translate-x-0" : "translate-x-full",
         ].join(" ")}>
         <div className="p-4 flex items-center justify-between border-b border-brd">
-          <span className="text-sm font-medium">Generationen</span>
+          <span className="text-sm font-medium">Generation</span>
           <button className="h-8 w-8 grid place-items-center rounded-md" onClick={() => setOpen(false)}>
             <div className="relative cursor-pointer">X</div>
           </button>
@@ -125,25 +125,3 @@ export default function Navbar() {
     </header>
   )
 }
-
-// export default function Navbar() {
-//   return (
-//     <nav className="flex justify-between items-center py-10 gap-30 px-20">
-//       <div className="flex items-center">
-//         <NavLink to="/">{({ isActive }) => <div>Home</div>}</NavLink>
-//       </div>
-//       <div className="flex flex-wrap gap-4">
-//         {Gens.map((gen) => (
-//           <NavLink key={gen.id} to={`/gen/${gen.id}`}>
-//             {({ isActive }) => (
-//               <div>
-//                 <img src={`/pokeball/${gen.id}-removebg-preview.png`} alt="Pokeball" className="w-5 h-5" />
-//                 {gen.label}
-//               </div>
-//             )}
-//           </NavLink>
-//         ))}
-//       </div>
-//     </nav>
-//   )
-// }
