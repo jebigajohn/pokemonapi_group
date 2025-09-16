@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { usePokedex } from "../../context/PokemonContext"
 import PokemonCard from "../pokemonCard/PokemonCard"
 
@@ -16,7 +16,7 @@ export default function LoadingMorePokemon() {
   }
 
   return (
-    <div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {pokemonShownOnPage.map((pokemon) => (
         <PokemonCard key={pokemon.name} pokemon={pokemon} />
       ))}
