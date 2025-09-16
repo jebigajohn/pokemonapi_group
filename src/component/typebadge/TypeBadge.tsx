@@ -28,12 +28,12 @@ export default function TypeBadge({ type, onClick }: TypeBadgeProps) {
   const color = Colors[type] ?? "#888"
   return (
     <>
-      <button
+      <div
         onClick={() => onClick?.(type)}
         className="px-4 py-1 w-fit rounded-full text-xs font-medium"
         style={{ background: color + "90" }}>
         {type}
-      </button>
+      </div>
     </>
   )
 }
