@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router"
 import { usePokedex } from "../../context/PokemonContext"
-
 import LoadingMorePokemon from "../../component/loadingMorePokemon/LoadingMorePokemon"
 
 export default function GenPage() {
