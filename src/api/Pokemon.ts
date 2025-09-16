@@ -31,8 +31,8 @@ export async function listByGeneration(gen: number): Promise<IPokemonLite[]> {
     })
     .filter(Boolean)
     .sort((a: any, b: any) => a - b)
-  const requests = speciesID.slice(0, 20)
-  const responses = await Promise.all(requests.map((id) => api.get(`/pokemon/${id}`)))
+  const requests = speciesID.map((id) => api.get(`/pokemon/${id}`))
+  const responses = await Promise.all(requests)
   return responses.map((r) => mapLite(r.data))
 }
 

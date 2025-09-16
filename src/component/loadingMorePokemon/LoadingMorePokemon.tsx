@@ -18,7 +18,7 @@ export default function LoadingMorePokemon() {
   return (
     <div>
       {pokemonShownOnPage.map((pokemon) => (
-        <PokemonCard key={pokemon.name} pokemon={pokemon} onclick={() => {}} />
+        <PokemonCard key={pokemon.name} pokemon={pokemon} />
       ))}
       <button onClick={loadMore} className="border rounded-2xl p-5 bg-blue-300 text-white mt-5">
         Loading more Pokémon

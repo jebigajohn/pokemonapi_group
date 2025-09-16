@@ -5,11 +5,11 @@ import { usePokedex } from "../../context/PokemonContext"
 import type { IPokemonDescription } from "../../interfaces/IPokemon"
 import type { IPokemonLite } from "../../interfaces/IPokemonLite"
 
-type PokemonCardPros = {
+type PokemonCardProps = {
   pokemon: IPokemonDescription | IPokemonLite
 }
 
-export default function PokemonCard({ pokemon }: PokemonCardPros) {
+export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const [open, setOpen] = useState(false)
   const { setSelectedPokemonId } = usePokedex()
 
