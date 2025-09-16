@@ -4,6 +4,7 @@ import { useState } from "react"
 import { usePokedex } from "../../context/PokemonContext"
 import type { IPokemonDescription } from "../../interfaces/IPokemon"
 import type { IPokemonLite } from "../../interfaces/IPokemonLite"
+import HoloCard from "../holocard/HoloCard"
 
 type PokemonCardProps = {
   pokemon: IPokemonDescription | IPokemonLite
@@ -30,22 +31,22 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
 
   return (
     <>
-      <button
-        onClick={openModal}
-        className="text-left overflow-hidden w-full max-w-xs transition-transform hover:-translate-y-0.5 p-5 border border-black/5 shadow-xl rounded-2xl">
-        <div className="aspect-square bg-black/20 rounded-2xl mb-2">
-          {image && <img src={image} alt={pokemon.name} className="object-contain p-4" />}
+      <HoloCard as="button" onClick={openModal} className="w-full">
+        <div className="aspect-square bg-black/20 rounded-2xl mb-2 grid place-items-center">
+          {image && <img src={image} alt={pokemon.name} className="w-full h-full object-contain p-4" loading="lazy" />}
         </div>
+
         <div>
           <div className="text-xs text-black/40">#{String(pokemon.id).padStart(4, "0")}</div>
           <div className="text-lg font-semibold capitalize">{pokemon.name}</div>
-          <div className="mt-2 flex flex-col sm:flex-row gap-2">
+          <div className="mt-2 flex flex-wrap gap-2">
             {types.map((type) => (
               <TypeBadge key={type} type={type} />
             ))}
           </div>
         </div>
-      </button>
+      </HoloCard>
+
       <Modal open={open} onClose={() => setOpen(false)} />
     </>
   )

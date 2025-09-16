@@ -19,6 +19,7 @@
   --font-family: "Pokemon", sans-serif;
   --font-hollow: "PokemonHollow", sans-serif;
   --font-solid: "PokemonSolid", sans-serif;
+
   --color-bg: #fefefc;
   --color-bgbtn: #fcfcf4;
   --color-btnHover: #ddddc6;
@@ -33,6 +34,7 @@
 }
 
 @layer utilities {
+  /* helpers */
   .text-outline {
     color: transparent;
     -webkit-text-stroke: 4px lightgrey;
@@ -45,6 +47,153 @@
     display: none;
   }
   .scrollbar-none {
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
+  }
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .holo {
+    --holo-foil-opacity: 0.35;
+    --holo-foil-sat: 110%;
+    --holo-foil-contrast: 108%;
+    --holo-foil-bright: 103%;
+
+    --holo-glitter-opacity: 0.35;
+    --holo-shine-opacity: 0.4;
+    --holo-shine-size: 180px;
+    --holo-blend: color-dodge;
+  }
+
+  .holo--soft {
+    --holo-foil-opacity: 0.17; /* .20 */
+    --holo-glitter-opacity: 0.15; /* .18 */
+    --holo-shine-opacity: 0.18 /* .22 */
+    --holo-shine-size: 140px;
+    --holo-blend: soft-light;
+  }
+
+  .holo {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    contain: paint;
+    will-change: transform;
+    background: #fefefc;
+
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    backface-visibility: hidden;
+  }
+
+  .holo::before,
+  .holo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    backface-visibility: hidden;
+  }
+
+  /* Foil-Farbverlauf (z-index: 2 – über Content) */
+  .holo::before {
+    background: radial-gradient(
+        1000px 700px at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.28),
+        transparent 60%
+      ),
+      conic-gradient(from var(--angle, 0deg), #ff00aa, #ffd500, #00ffd0, #00a2ff, #b57eff, #ff00aa);
+    mix-blend-mode: var(--holo-blend);
+    filter: saturate(var(--holo-foil-sat)) contrast(var(--holo-foil-contrast)) brightness(var(--holo-foil-bright));
+    opacity: var(--holo-foil-opacity);
+    z-index: 2;
+  }
+
+  /* Glitzer/Noise (z-index: 3) */
+  .holo::after {
+    background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.16) 0 2px, transparent 2px 6px),
+      repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px 3px);
+    mix-blend-mode: screen;
+    opacity: var(--holo-glitter-opacity);
+    z-index: 3;
+  }
+
+  /* Spotlight/Shine (z-index: 4) */
+  .holo-shine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(
+      var(--holo-shine-size) var(--holo-shine-size) at var(--mx, 50%) var(--my, 50%),
+      #000 0%,
+      transparent 70%
+    );
+    mask-image: radial-gradient(
+      var(--holo-shine-size) var(--holo-shine-size) at var(--mx, 50%) var(--my, 50%),
+      #000 0%,
+      transparent 70%
+    );
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.75)
+    );
+    mix-blend-mode: overlay;
+    opacity: var(--holo-shine-opacity);
+    z-index: 4;
+
+    border-radius: inherit;
+    -webkit-border-radius: inherit;
+    backface-visibility: hidden;
+  }
+
+  .holo:hover {
+    animation: none;
+  }
+
+  @keyframes holo-sweep {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .holo:hover {
+      animation: none;
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .holo::before,
+    .holo::after,
+    .holo-shine {
+      transform: none !important;
+    }
+    .holo::before {
+      background: radial-gradient(
+          900px 600px at var(--mx, 50%) var(--my, 50%),
+          rgba(255, 255, 255, 0.2),
+          transparent 60%
+        ),
+        linear-gradient(135deg, rgba(255, 0, 170, 0.2), rgba(0, 162, 255, 0.2));
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+    }
+    .holo::after {
+      opacity: 0.35;
+    }
+    .holo-shine {
+      display: none;
+    }
+  }
+
+  @supports not (mix-blend-mode: color-dodge) {
+    .holo {
+      --holo-blend: overlay;
+    }
   }
 }
