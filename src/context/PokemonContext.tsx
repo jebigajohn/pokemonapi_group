@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import type { IPokemonDescription, IPokemonResult } from "../interfaces/IPokemon"
-import type { ITypeResult } from "../interfaces/IType"
+import type { IPokemonDescription } from "../interfaces/IPokemon"
 import { getPokemon, listByGeneration, listByType, listRandom12 } from "../api/Pokemon"
 import type { IPokemonLite } from "../interfaces/IPokemonLite"
 
@@ -24,7 +23,8 @@ export type PokedexState = {
   typeResult: IPokemonLite[]
 
   // Ergebnisliste
-  pokemon: IPokemonDescription[]
+  pokemon: IPokemonDescription | null
+  setPokemon: React.Dispatch<React.SetStateAction<IPokemonDescription | null>>
   loading: boolean
   error: string | null
   selectedPokemonId: number | null
@@ -197,6 +197,7 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     detailError,
     selectedPokemonId,
     setSelectedPokemonId,
+    setPokemon,
   }
   return <PokedexContext.Provider value={value}>{children}</PokedexContext.Provider>
 }
