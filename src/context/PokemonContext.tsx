@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import type { IPokemonDescription, IPokemonResult } from "../interfaces/IPokemon"
-import type { ITypeResult } from "../interfaces/IType"
+
 import { getPokemon, listByGeneration, listByType, listRandom12 } from "../api/Pokemon"
 import type { IPokemonLite } from "../interfaces/IPokemonLite"
 
@@ -186,6 +185,7 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     typeResult,
     pokemon,
     loading,
+    setLoading,
     error,
     selectedPokemon,
     setSelectedPokemon,

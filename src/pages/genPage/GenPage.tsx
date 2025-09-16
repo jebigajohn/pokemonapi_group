@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useParams } from "react-router"
 import { usePokedex } from "../../context/PokemonContext"
 import PokemonCard from "../../component/pokemonCard/PokemonCard"
+import LoadingMorePokemon from "../../component/loadingMorePokemon/LoadingMorePokemon"
 
 export default function GenPage() {
   const { genId } = useParams()
@@ -15,10 +16,11 @@ export default function GenPage() {
 
   return (
     <div>
-      {" "}
+      {/* {" "}
       {generationResult.map((p) => (
         <PokemonCard key={p.name} pokemon={p} onclick={() => {}} />
-      ))}
+      ))} */}
+      <LoadingMorePokemon />
     </div>
   )
 }
