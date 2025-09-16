@@ -1,12 +1,23 @@
 @font-face {
   font-family: Pokemon;
-  src: url(./assets/fonts/Pokemon_Classic.ttf) format('truetype');
+  src: url(./assets/fonts/Pokemon_Classic.ttf) format("truetype");
 }
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --font-family: 'Pokemon', sans-serif;
+  --font-family: "Pokemon", sans-serif;
+  --color-bg: #fefefc;
+  --color-bgbtn: #fcfcf4;
+  --color-btnHover: #ddddc6;
+  --color-btnClicked: #56564d;
+  --color-brd: rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth font-family bg-bg;
+  }
 }
 
 html {

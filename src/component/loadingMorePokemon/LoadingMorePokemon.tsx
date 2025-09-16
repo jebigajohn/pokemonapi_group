@@ -16,11 +16,15 @@ export default function LoadingMorePokemon() {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-      {pokemonShownOnPage.map((pokemon) => (
-        <PokemonCard key={pokemon.name} pokemon={pokemon} />
-      ))}
-      <button onClick={loadMore} className="border rounded-2xl p-5 bg-blue-300 text-white mt-5">
+    <div className="flex flex-col items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {pokemonShownOnPage.map((pokemon) => (
+          <PokemonCard key={pokemon.name} pokemon={pokemon} />
+        ))}
+      </div>
+      <button
+        onClick={loadMore}
+        className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 m-10 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
         Loading more Pokémon
       </button>
     </div>

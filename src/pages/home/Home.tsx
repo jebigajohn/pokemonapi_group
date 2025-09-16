@@ -21,26 +21,29 @@ export default function Home() {
   if (!randomPokemons) return <div>Loading...</div>
   return (
     <div className="p-4">
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Pokémon by name or ID..."
-          className="flex-1 border rounded-md px-3 py-2"
+          className="min-w-120 flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
         />
-        <button onClick={handleSearch} className="px-4 py-2">
+        <button
+          onClick={handleSearch}
+          className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
           Search
         </button>
-        <button onClick={handleReloadRandom} className="px-4 py-2">
+        <button
+          onClick={handleReloadRandom}
+          className="flex items-center justify-center gap-2 border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
           New Random
         </button>
       </div>
       {loading && <div>Loading…</div>}
       {error && <div className="text-red-500">{error}</div>}
       {pokemon ? (
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">Search Result:</h2>
+        <div className="mb-6 flex items-center justify-center p-20">
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         </div>
       ) : null}
