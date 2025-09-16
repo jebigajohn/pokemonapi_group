@@ -17,6 +17,8 @@
 
 @theme {
   --font-family: "Pokemon", sans-serif;
+  --font-hollow: "PokemonHollow", sans-serif;
+  --font-solid: "PokemonSolid", sans-serif;
   --color-bg: #fefefc;
   --color-bgbtn: #fcfcf4;
   --color-btnHover: #ddddc6;
