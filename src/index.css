@@ -28,7 +28,7 @@
 
 @layer base {
   html {
-    @apply scroll-smooth font-family bg-bg;
+    @apply scroll-smooth font-family bg-bg overflow-x-hidden;
   }
 }
 

@@ -35,7 +35,11 @@ export default function Navbar() {
       <nav className="flex justify-between items-center py-6 px-10 w-[100vw]">
         <NavLink to="/" onClick={() => setOpen(false)}>
           {({ isActive }) => (
-            <div className={[linkBase, isActive ? "bg-btnClicked text-bgbtn" : "hover:bg-btnHover"].join(" ")}>
+            <div
+              className={[
+                "flex items-center border border-brd rounded-2xl px-4 py-3 text-xs bg-bgbtn",
+                isActive ? "bg-btnClicked text-bgbtn" : "hover:bg-btnHover",
+              ].join(" ")}>
               Home
             </div>
           )}
@@ -87,7 +91,6 @@ export default function Navbar() {
         ].join(" ")}
       />
       <div
-        id="mobile-drawer"
         ref={panelRef}
         className={[
           "sm:hidden fixed z-50 top-0 right-0 h-full w-72 max-w-[85vw]",
@@ -97,13 +100,8 @@ export default function Navbar() {
         ].join(" ")}>
         <div className="p-4 flex items-center justify-between border-b border-brd">
           <span className="text-sm font-medium">Generationen</span>
-          <button
-            className="h-8 w-8 grid place-items-center rounded-md border border-brd"
-            onClick={() => setOpen(false)}>
-            <div className="relative h-3 w-3">
-              <span className="absolute inset-0 h-0.5 w-full rotate-45 bg-current rounded" />
-              <span className="absolute inset-0 h-0.5 w-full -rotate-45 bg-current rounded" />
-            </div>
+          <button className="h-8 w-8 grid place-items-center rounded-md" onClick={() => setOpen(false)}>
+            <div className="relative cursor-pointer">X</div>
           </button>
         </div>
 
@@ -113,8 +111,7 @@ export default function Navbar() {
               {({ isActive }) => (
                 <div
                   className={[
-                    "flex items-center gap-3 rounded-xl border border-brd px-4 py-3 text-sm bg-bgbtn",
-                    "active:scale-[.99] transition",
+                    "flex items-center gap-2 border border-brd rounded-2xl px-3 py-2 text-xs bg-bgbtn",
                     isActive ? "bg-btnClicked text-bgbtn" : "hover:bg-btnHover",
                   ].join(" ")}>
                   <img src={`/pokeball/${gen.id}-removebg-preview.png`} alt="" className="w-5 h-5" />
@@ -128,3 +125,25 @@ export default function Navbar() {
     </header>
   )
 }
+
+// export default function Navbar() {
+//   return (
+//     <nav className="flex justify-between items-center py-10 gap-30 px-20">
+//       <div className="flex items-center">
+//         <NavLink to="/">{({ isActive }) => <div>Home</div>}</NavLink>
+//       </div>
+//       <div className="flex flex-wrap gap-4">
+//         {Gens.map((gen) => (
+//           <NavLink key={gen.id} to={`/gen/${gen.id}`}>
+//             {({ isActive }) => (
+//               <div>
+//                 <img src={`/pokeball/${gen.id}-removebg-preview.png`} alt="Pokeball" className="w-5 h-5" />
+//                 {gen.label}
+//               </div>
+//             )}
+//           </NavLink>
+//         ))}
+//       </div>
+//     </nav>
+//   )
+// }
