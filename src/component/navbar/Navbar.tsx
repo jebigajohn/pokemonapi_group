@@ -1,39 +1,44 @@
-import { NavLink } from "react-router"
+import { NavLink } from 'react-router'
 
 const Gens = [
-  { id: 1, label: "Gen I" },
-  { id: 2, label: "Gen II" },
-  { id: 3, label: "Gen III" },
-  { id: 4, label: "Gen IV" },
-  { id: 5, label: "Gen V" },
-  { id: 6, label: "Gen VI" },
-  { id: 7, label: "Gen VII" },
-  { id: 8, label: "Gen VIII" },
-  { id: 9, label: "Gen IX" },
+  { id: 1, label: 'Gen I' },
+  { id: 2, label: 'Gen II' },
+  { id: 3, label: 'Gen III' },
+  { id: 4, label: 'Gen IV' },
+  { id: 5, label: 'Gen V' },
+  { id: 6, label: 'Gen VI' },
+  { id: 7, label: 'Gen VII' },
+  { id: 8, label: 'Gen VIII' },
+  { id: 9, label: 'Gen IX' },
 ]
 
 export default function Navbar() {
   return (
-    <>
-      <nav className="flex justify-between px-21 py-10">
-        <div>
-          <NavLink to={"/"}>Home</NavLink>
-        </div>
-        <div>
-          {Gens.map((gen) => {
-            return (
-              <NavLink
-                key={gen.id}
-                to={`/gen/${gen.id}`}
-                className={({ isActive }) =>
-                  ["px-3 py-1.5 text-sm", isActive ? "border-b text-black" : "hover:bg-white/10"].join(" ")
-                }>
+    <nav className="flex justify-between items-center py-10 gap-30 px-20">
+      <div>
+        <NavLink to="/">Home</NavLink>
+      </div>
+      <div className="grid  lg:grid-cols-9 md:grid-cols-5 grid-cols-2  gap-4">
+        {Gens.map((gen) => (
+          <NavLink key={gen.id} to={`/gen/${gen.id}`}>
+            {({ isActive }) => (
+              <div
+                className={[
+                  'flex items-center gap-2 border rounded-2xl px-3 py-2 text-sm transition',
+                  isActive ? 'bg-black text-white' : 'hover:bg-white/10',
+                ].join(' ')}
+              >
+                <img
+                  src={`/pokeball/${gen.id}-removebg-preview.png`}
+                  alt="Pokeball"
+                  className="w-5 h-5"
+                />
                 {gen.label}
-              </NavLink>
-            )
-          })}
-        </div>
-      </nav>
-    </>
+              </div>
+            )}
+          </NavLink>
+        ))}
+      </div>
+    </nav>
   )
 }
