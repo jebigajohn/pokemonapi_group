@@ -21,13 +21,10 @@ export default function CryButton({ pokemon }: CryButtonProps) {
       <button
         onClick={playCry}
         disabled={!cry}
-        className={`px-3 py-1.5 rounded-md text-sm ${
-          cry ? "bg-white/10 hover:bg-white/20" : "bg-white/5 opacity-60 cursor-not-allowed"
-        }`}
+        className={" px-3 py-2 rounded-md text-sm bg-bgbtn border border-black/10 rounded-2xl hover:bg-btnHover"}
         title={cry ? "Play Cry" : "Cry not found"}>
-        Cry
+        Play Cry
       </button>
-
       {cry && <audio ref={audioRef} src={cry} preload="none" />}
     </>
   )

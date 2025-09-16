@@ -3,6 +3,16 @@
   src: url(./assets/fonts/Pokemon_Classic.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: PokemonHollow;
+  src: url(./assets/fonts/Pokemon_Hollow.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: PokemonSolid;
+  src: url(./assets/fonts/Pokemon_Solid.ttf) format("truetype");
+}
+
 @import "tailwindcss";
 
 @theme {
@@ -20,6 +30,13 @@
   }
 }
 
-html {
-  font-family: var(--font-family);
+@layer utilities {
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 4px lightgrey;
+  }
+  .text-outline-white {
+    color: white;
+    -webkit-text-stroke: 2px black;
+  }
 }
