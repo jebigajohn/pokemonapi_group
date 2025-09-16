@@ -1,14 +1,43 @@
 @font-face {
   font-family: Pokemon;
-  src: url(./assets/fonts/Pokemon_Classic.ttf) format('truetype');
+  src: url(./assets/fonts/Pokemon_Classic.ttf) format("truetype");
 }
 
-@import 'tailwindcss';
+@font-face {
+  font-family: PokemonHollow;
+  src: url(./assets/fonts/Pokemon_Hollow.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: PokemonSolid;
+  src: url(./assets/fonts/Pokemon_Solid.ttf) format("truetype");
+}
+
+@import "tailwindcss";
 
 @theme {
-  --font-family: 'Pokemon', sans-serif;
+  --font-family: "Pokemon", sans-serif;
+  --font-hollow: "PokemonHolow", sans-serif;
+  --font-solid: "PokemonSolid", sans-serif;
+  --color-bg: #fefefc;
+  --color-bgbtn: #fcfcf4;
+  --color-btnHover: #ddddc6;
+  --color-btnClicked: #56564d;
 }
 
-html {
-  font-family: var(--font-family);
+@layer base {
+  html {
+    @apply scroll-smooth font-family bg-bg;
+  }
+}
+
+@layer utilities {
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 4px lightgrey;
+  }
+  .text-outline-white {
+    color: white;
+    -webkit-text-stroke: 2px black;
+  }
 }
