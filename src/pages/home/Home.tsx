@@ -1,6 +1,6 @@
-import React from 'react'
-import { usePokedex } from '../../context/PokemonContext'
-import PokemonCard from '../../component/pokemonCard/PokemonCard'
+import React from "react"
+import { usePokedex } from "../../context/PokemonContext"
+import PokemonCard from "../../component/pokemonCard/PokemonCard"
 
 export default function Home() {
   const { randomPokemons } = usePokedex()
@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {randomPokemons.map((p) => (
-        <PokemonCard key={p.id} pokemon={p} onclick={() => {}} />
+        <PokemonCard key={p.id} pokemon={p} />
       ))}
     </div>
   )

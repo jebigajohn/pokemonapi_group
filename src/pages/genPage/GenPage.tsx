@@ -17,7 +17,7 @@ export default function GenPage() {
     <div>
       {" "}
       {generationResult.map((p) => (
-        <PokemonCard key={p.name} pokemon={p} onclick={() => {}} />
+        <PokemonCard key={p.name} pokemon={p} />
       ))}
     </div>
   )

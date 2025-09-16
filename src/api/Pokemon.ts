@@ -3,6 +3,7 @@ import axios from "axios"
 
 import type { IPokemonLite } from "../interfaces/IPokemonLite"
 import { useEffect } from "react"
+import type { IPokemonDescription } from "../interfaces/IPokemon"
 
 const api = axios.create({ baseURL: "https://pokeapi.co/api/v2" })
 
@@ -77,10 +78,10 @@ export async function listAllNames(): Promise<string[]> {
   return (data.results ?? []).map((r: any) => r.name)
 }
 
-export async function getPokemon(nameOrId: string | number): Promise<IPokemonLite | null> {
+export async function getPokemon(nameOrId: string | number): Promise<IPokemonDescription | null> {
   try {
     const { data } = await api.get(`/pokemon/${nameOrId}`)
-    return mapLite(data)
+    return data as IPokemonDescription
   } catch {
     return null
   }

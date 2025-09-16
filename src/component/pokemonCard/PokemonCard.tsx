@@ -1,17 +1,18 @@
 import TypeBadge from "../typebadge/TypeBadge"
-import type { IPokemonDescription } from "../../interfaces/IPokemon"
 import type { IPokemonLite } from "../../interfaces/IPokemonLite"
+import Modal from "../modal/Modal"
+import { useState } from "react"
 
 type PokemonCardPros = {
   pokemon: IPokemonLite
-  onclick: () => void
 }
 
-export default function PokemonCard({ pokemon, onclick }: PokemonCardPros) {
+export default function PokemonCard({ pokemon }: PokemonCardPros) {
+  const [open, setOpen] = useState(false)
   return (
     <>
       <button
-        onClick={onclick}
+        onClick={() => setOpen(true)}
         className="card group text-left overflow-hidden transition-transform hover:-translate-y-0.5 p-5 border rounded-md">
         <div className="aspect-square bg-black/20 rounded-md mb-2">
           {pokemon.image && <img src={pokemon.image} alt={pokemon.name} className="w-full h-full object-contain p-4" />}
@@ -26,6 +27,7 @@ export default function PokemonCard({ pokemon, onclick }: PokemonCardPros) {
           </div>
         </div>
       </button>
+      <Modal open={open} onClose={() => setOpen(false)} pokemonId={pokemon.id} />
     </>
   )
 }
