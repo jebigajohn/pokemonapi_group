@@ -1,8 +1,8 @@
-import Navbar from "../navbar/Navbar"
+import Navbar from '../navbar/Navbar'
 
 export default function Header() {
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <Navbar />
     </div>
   )
