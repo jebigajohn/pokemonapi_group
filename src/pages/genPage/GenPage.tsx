@@ -11,7 +11,7 @@ export default function GenPage() {
     if (genId) setGeneration(Number(genId))
   }, [genId, setGeneration])
 
-  if (!generationResult.length) return <div>Noch keine Daten für Gen {genId}</div>
+  if (!generationResult.length) return <div text-center>Loading Gen {genId}</div>
 
   return (
     <div>

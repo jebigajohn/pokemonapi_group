@@ -6,7 +6,7 @@ export default function Layout() {
     <>
       <div>
         <Header />
-        <main className="px-6">
+        <main className="px-1">
           <Outlet />
         </main>
       </div>

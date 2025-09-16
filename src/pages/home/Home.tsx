@@ -47,7 +47,7 @@ export default function Home() {
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         </div>
       ) : null}
-      <h2 className="text-xl font-semibold mb-2">Random Pokémon</h2>
+      <h2 className="text-xl font-semibold mb-5 ">Random Pokémon</h2>
       {!randomPokemons ? (
         <div>Loading random Pokémon…</div>
       ) : (

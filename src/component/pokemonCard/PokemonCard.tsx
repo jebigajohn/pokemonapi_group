@@ -39,7 +39,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
         <div>
           <div className="text-xs text-black/40">#{String(pokemon.id).padStart(4, "0")}</div>
           <div className="text-lg font-semibold capitalize">{pokemon.name}</div>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex flex-col sm:flex-row gap-2">
             {types.map((type) => (
               <TypeBadge key={type} type={type} />
             ))}

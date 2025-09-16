@@ -46,7 +46,7 @@ export default function Modal({ open, onClose }: ModalProps) {
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 blur p-10" onClick={onClose} />
+      <div className="absolute inset-0 lg:bg-black/60 lg:backdrop-blur-sm p-10" onClick={onClose} />
 
       <div className="relative card max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-2xl border border-black/10 shadow-2xl bg-white scrollbar-none">
         <div className="flex flex-col md:flex-row">
