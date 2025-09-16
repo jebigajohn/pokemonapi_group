@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import type { IPokemonDescription } from "../../interfaces/IPokemon"
 
 type CryButtonProps = {
@@ -8,6 +8,12 @@ type CryButtonProps = {
 export default function CryButton({ pokemon }: CryButtonProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const cry = pokemon?.cries?.latest ?? null
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5
+    }
+  }, [cry])
 
   function playCry() {
     if (audioRef.current) {

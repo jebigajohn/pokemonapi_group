@@ -27,7 +27,7 @@ export default function Home() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Pokémon by name or ID..."
-          className="min-w-120 flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
+          className="min-w-100 flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
         />
         <button
           onClick={handleSearch}
@@ -51,7 +51,7 @@ export default function Home() {
       {!randomPokemons ? (
         <div>Loading random Pokémon…</div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4">
           {randomPokemons.map((pokemon) => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
