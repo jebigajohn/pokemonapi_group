@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { listRandom12 } from "../../api/Pokemon"
 
 export default function Home() {
-  const { randomPokemons, setRandomPokemons, query, setQuery, pokemon, setPokemon, loading, error } = usePokedex()
+  const { randomPokemons, setRandomPokemons, setQuery, pokemon, setPokemon, loading, error } = usePokedex()
 
   const [search, setSearch] = useState("")
 
@@ -25,6 +25,8 @@ export default function Home() {
     setPokemon(null)
   }
 
+  const placeholder = window.innerWidth < 768 ? "Search Pokemon..." : "Search Pokémon by name or ID..."
+
   if (!randomPokemons) return <div>Loading...</div>
   return (
     <div className="p-4">
@@ -33,12 +35,9 @@ export default function Home() {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search Pokémon by name or ID..."
-          className="min-w-100 flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
+          placeholder={placeholder}
+          className="w-full sm:max-w-md flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
         />
-        <button className="mt-5 py-1 px-3 text-center bg-bgbtn rounded-full text-xl" onClick={handleClear}>
-          x
-        </button>
         <button
           onClick={handleSearch}
           className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
@@ -53,8 +52,13 @@ export default function Home() {
       {loading && <div>Loading…</div>}
       {error && <div className="text-red-500">{error}</div>}
       {pokemon ? (
-        <div className="mb-6 flex items-center justify-center p-20">
+        <div className="mb-6 flex flex-col items-center justify-center p-20">
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          <button
+            className="text-center text-xl mt-5 p-2 px-3 border border-brd rounded-full bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer"
+            onClick={handleClear}>
+            x
+          </button>
         </div>
       ) : null}
       <h2 className="text-xl font-semibold mb-5 ">Random Pokémon</h2>

@@ -190,7 +190,6 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     typeResult,
     pokemon,
     loading,
-    setLoading,
     error,
     selectedPokemon,
     setSelectedPokemon,

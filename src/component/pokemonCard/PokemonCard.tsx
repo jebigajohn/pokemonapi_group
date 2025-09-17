@@ -31,14 +31,14 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
 
   return (
     <>
-      <HoloCard as="button" onClick={openModal} className="w-full">
+      <HoloCard as="button" onClick={openModal} className="w-full h-full flex flex-col justify-between">
         <div className="aspect-square bg-black/20 rounded-2xl mb-2 grid place-items-center">
           {image && <img src={image} alt={pokemon.name} className="w-full h-full object-contain p-4" loading="lazy" />}
         </div>
 
-        <div>
+        <div className="flex flex-col justify-between">
           <div className="text-xs text-black/40">#{String(pokemon.id).padStart(4, "0")}</div>
-          <div className="text-lg font-semibold capitalize">{pokemon.name}</div>
+          <div className="text-base sm:text-lg font-semibold capitalize break-words">{pokemon.name}</div>
           <div className="mt-2 flex flex-col sm:flex-row gap-1">
             {types.map((type) => (
               <TypeBadge key={type} type={type} />
