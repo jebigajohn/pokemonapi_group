@@ -15,7 +15,7 @@ export default function Header() {
     <div className="flex flex-col justify-center items-center mb-10">
       <Navbar />
       <div className="text-center">
-        <h1 className="mt-7 text-8xl xl:text-9xl font-solid font-bold text-outline tracking-wider">Pokedex</h1>
+        <h1 className="mt-7 text-7xl xl:text-9xl font-solid font-bold text-outline tracking-wider">Pokedex</h1>
         <p className="text-sm text-gray-500">{subtitle}</p>
       </div>
     </div>
