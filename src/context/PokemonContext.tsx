@@ -1,7 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from "react"
-import { getPokemon, listByGeneration, listByType, listRandom12 } from "../api/Pokemon"
-import type { IPokemonLite } from "../interfaces/IPokemonLite"
-import type { IPokemonDescription } from "../interfaces/IPokemon"
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import {
+  getPokemon,
+  listByGeneration,
+  listByType,
+  listRandom12,
+} from '../api/Pokemon'
+import type { IPokemonLite } from '../interfaces/IPokemonLite'
+import type { IPokemonDescription } from '../interfaces/IPokemon'
 
 export type PokedexState = {
   // query
@@ -32,7 +37,9 @@ export type PokedexState = {
 
   // Detail
   selectedPokemon: IPokemonDescription | null
-  setSelectedPokemon: React.Dispatch<React.SetStateAction<IPokemonDescription | null>>
+  setSelectedPokemon: React.Dispatch<
+    React.SetStateAction<IPokemonDescription | null>
+  >
   detailLoading: boolean
   detailError: string | null
 }
@@ -41,16 +48,18 @@ const PokedexContext = createContext<PokedexState | null>(null)
 
 export function usePokedex() {
   const ctx = useContext(PokedexContext)
-  if (!ctx) throw new Error("usePokedex must e used within PokedexProvider")
+  if (!ctx) throw new Error('usePokedex must e used within PokedexProvider')
   return ctx
 }
 
 export function PokemonProvider({ children }: { children: React.ReactNode }) {
   // Suchfeld
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
 
   // Random Pokemons
-  const [randomPokemons, setRandomPokemons] = useState<IPokemonLite[] | null>(null)
+  const [randomPokemons, setRandomPokemons] = useState<IPokemonLite[] | null>(
+    null
+  )
 
   // Generations
   const [generation, setGeneration] = useState<number | null>(null)
@@ -64,10 +73,13 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
   const [pokemon, setPokemon] = useState<IPokemonDescription | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(null)
+  const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(
+    null
+  )
 
   // Detail
-  const [selectedPokemon, setSelectedPokemon] = useState<IPokemonDescription | null>(null)
+  const [selectedPokemon, setSelectedPokemon] =
+    useState<IPokemonDescription | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
   const [detailError, setDetailError] = useState<string | null>(null)
 
@@ -190,7 +202,6 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     typeResult,
     pokemon,
     loading,
-    setLoading,
     error,
     selectedPokemon,
     setSelectedPokemon,
@@ -200,5 +211,7 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
     setSelectedPokemonId,
     setPokemon,
   }
-  return <PokedexContext.Provider value={value}>{children}</PokedexContext.Provider>
+  return (
+    <PokedexContext.Provider value={value}>{children}</PokedexContext.Provider>
+  )
 }
