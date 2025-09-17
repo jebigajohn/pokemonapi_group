@@ -1,21 +1,28 @@
 import { usePokedex } from "../../context/PokemonContext"
 import PokemonCard from "../../component/pokemonCard/PokemonCard"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { listRandom12 } from "../../api/Pokemon"
 
 export default function Home() {
-  const { randomPokemons, setRandomPokemons, setQuery, pokemon, loading, error } = usePokedex()
+  const { randomPokemons, setRandomPokemons, query, setQuery, pokemon, setPokemon, loading, error } = usePokedex()
 
   const [search, setSearch] = useState("")
 
   const handleSearch = () => {
+    setSearch("")
     if (search.trim() === "") return
     setQuery(search.trim().toLowerCase())
+  }
+
+  const handleClear = async () => {
+    setPokemon(null)
+    setQuery("")
   }
 
   const handleReloadRandom = async () => {
     const resp = await listRandom12()
     setRandomPokemons(resp)
+    setPokemon(null)
   }
 
   if (!randomPokemons) return <div>Loading...</div>
@@ -29,6 +36,9 @@ export default function Home() {
           placeholder="Search Pokémon by name or ID..."
           className="min-w-100 flex items-center border border-brd rounded-2xl px-3 py-3 text-sm bg-bgbtn"
         />
+        <button className="mt-5 py-1 px-3 text-center bg-bgbtn rounded-full text-xl" onClick={handleClear}>
+          x
+        </button>
         <button
           onClick={handleSearch}
           className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
