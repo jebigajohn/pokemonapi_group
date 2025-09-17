@@ -67,9 +67,9 @@
   }
 
   .holo--soft {
-    --holo-foil-opacity: 0.17; /* .20 */
-    --holo-glitter-opacity: 0.15; /* .18 */
-    --holo-shine-opacity: 0.18 /* .22 */
+    --holo-foil-opacity: 0.17; /* .20 17 */
+    --holo-glitter-opacity: 0.15; /* .18 15 */
+    --holo-shine-opacity: 0.18 /* .22 18*/
     --holo-shine-size: 140px;
     --holo-blend: soft-light;
   }
