@@ -130,8 +130,8 @@ export function PokemonProvider({ children }: { children: React.ReactNode }) {
       } finally {
         setLoading(false)
       }
-      getType()
     }
+    getType()
   }, [type])
 
   //# Pokemon (einzeln)
