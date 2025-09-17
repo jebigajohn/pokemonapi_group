@@ -1,22 +1,31 @@
-import { usePokedex } from "../../context/PokemonContext"
-import PokemonCard from "../../component/pokemonCard/PokemonCard"
-import { useEffect, useState } from "react"
-import { listRandom12 } from "../../api/Pokemon"
+import { usePokedex } from '../../context/PokemonContext'
+import PokemonCard from '../../component/pokemonCard/PokemonCard'
+
+import { listRandom12 } from '../../api/Pokemon'
+import { useState } from 'react'
 
 export default function Home() {
-  const { randomPokemons, setRandomPokemons, setQuery, pokemon, setPokemon, loading, error } = usePokedex()
+  const {
+    randomPokemons,
+    setRandomPokemons,
+    setQuery,
+    pokemon,
+    setPokemon,
+    loading,
+    error,
+  } = usePokedex()
 
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState('')
 
   const handleSearch = () => {
-    setSearch("")
-    if (search.trim() === "") return
+    setSearch('')
+    if (search.trim() === '') return
     setQuery(search.trim().toLowerCase())
   }
 
   const handleClear = async () => {
     setPokemon(null)
-    setQuery("")
+    setQuery('')
   }
 
   const handleReloadRandom = async () => {
@@ -25,7 +34,10 @@ export default function Home() {
     setPokemon(null)
   }
 
-  const placeholder = window.innerWidth < 768 ? "Search Pokemon..." : "Search Pokémon by name or ID..."
+  const placeholder =
+    window.innerWidth < 768
+      ? 'Search Pokemon...'
+      : 'Search Pokémon by name or ID...'
 
   if (!randomPokemons) return <div>Loading...</div>
   return (
@@ -40,12 +52,14 @@ export default function Home() {
         />
         <button
           onClick={handleSearch}
-          className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
+          className="flex items-center justify-center border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer"
+        >
           Search
         </button>
         <button
           onClick={handleReloadRandom}
-          className="flex items-center justify-center gap-2 border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer">
+          className="flex items-center justify-center gap-2 border border-brd rounded-2xl px-3 py-2 text-sm bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer"
+        >
           New Random
         </button>
       </div>
@@ -56,7 +70,8 @@ export default function Home() {
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
           <button
             className="text-center text-xl mt-5 p-2 px-3 border border-brd rounded-full bg-bgbtn hover:bg-btnHover hover:scale-120 cursor-pointer"
-            onClick={handleClear}>
+            onClick={handleClear}
+          >
             x
           </button>
         </div>
